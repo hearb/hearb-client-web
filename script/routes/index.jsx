@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 
 import App from '../containers/App';
-import PageIndex from '../components/PageIndex';
+import PageIndex from '../pages/PageIndex';
 
 export default (
 	<Route path="/" component={App}>

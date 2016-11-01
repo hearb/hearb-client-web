@@ -33,7 +33,7 @@ module.exports = [
 					test: /\.jsx?$/,
 					loader: 'babel',
 					query: {
-						presets: ['react', 'es2015']
+						presets: ['es2015', 'react']
 					},
 					exclude: /node_modules/
 				}
@@ -63,7 +63,7 @@ module.exports = [
 		],
 		postcss: [
 			autoprefixer({
-				browsers: ['last 2 versions']
+				browsers: ['last 2 versions', 'ie >= 9', 'Android >= 4', 'ios_saf >= 8']
 			})
 		]
 	}

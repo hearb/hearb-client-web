@@ -13,7 +13,7 @@ client/build:                                     ## クライアントをビル
 	NODE_ENV=production ./node_modules/.bin/webpack
 
 client/watch:                                     ## クライアントを自動コンパイル
-	NODE_ENV=development ./node_modules/.bin/webpack --progress --color --watch
+	NODE_ENV=development ./node_modules/.bin/webpack --progress --color --watch --cache false
 
 client/deps:                                      ## クライアントの依存パッケージをダウンロード
 	npm install

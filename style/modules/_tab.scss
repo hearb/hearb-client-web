@@ -1,0 +1,31 @@
+.tab-bar {
+	ul {
+		margin: 0;
+		padding: 0;
+		display: flex;
+	}
+}
+
+.tab {
+	flex: 1;
+	height: 48px;
+
+	cursor: pointer;
+
+	&.selected {
+		.tab-indicator {
+			background-color: palette(Black);
+		}
+	}
+}
+
+.tab-indicator {
+	height: 4px;
+}
+
+.tab-content {
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
