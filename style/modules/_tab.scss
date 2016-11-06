@@ -1,4 +1,7 @@
-.tab-bar {
+.tab-list {
+	background-color: palette(White);
+	color: palette(Black, Text);
+
 	ul {
 		margin: 0;
 		padding: 0;
@@ -6,26 +9,36 @@
 	}
 }
 
-.tab {
-	flex: 1;
-	height: 48px;
-
-	cursor: pointer;
-
-	&.selected {
-		.tab-indicator {
-			background-color: palette(Black);
-		}
-	}
+.tab-bar {
+	height: 4px;
+	position: relative;
 }
 
 .tab-indicator {
 	height: 4px;
+	position: absolute;
+	top: 0;
+	transition: left .3s cubic-bezier(.5, 1.2, .6, 1.2);
+
+	border-radius: 2px;
+	background-color: palette(Black, Text);
 }
 
-.tab-content {
+.tab {
+	flex: 1;
 	height: 44px;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	cursor: pointer;
+
+	font-size: .9rem;
+	font-weight: normal;
+
+	&.selected {
+		font-size: 1rem;
+		font-weight: bold;
+	}
 }

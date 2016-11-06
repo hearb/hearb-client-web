@@ -1,4 +1,13 @@
 #tab-menu {
-	padding: 0 2vw;
 	background-color: palette(Light Green);
+	color: palette(Green, 600);
+
+	.tab-indicator {
+		background-color: palette(Green, 800);
+	}
+
+	.tab.selected {
+		background-color: palette(White, Dividers);
+		color: palette(Green, 800);
+	}
 }

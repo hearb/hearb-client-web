@@ -60,7 +60,7 @@ export const tabReducer = (state = init, action) => {
 
 		tabs.push({
 			name: action.name,
-			selected: 1
+			selected: 0
 		})
 		return tabs;
 

@@ -26,18 +26,15 @@ export class Tab extends React.Component {
 
 		return (
 			<li className={classname} onClick={selectTab}>
-				<div className="tab-indicator"></div>
-				<div className="tab-content">
-					<i className="material-icons">{icon}</i>
-					<div className="tab-text">{text}</div>
-				</div>
+				<i className="material-icons">{icon}</i>
+				<div className="tab-text">{text}</div>
 			</li>
 		)
 	}
 }
 
 
-class TabBar extends React.Component {
+class TabList extends React.Component {
 	static get propTypes() {
 		return {
 			name:      React.PropTypes.string,
@@ -65,36 +62,50 @@ class TabBar extends React.Component {
 
 		const id = 'tab-' + name;
 
-		// state.tabsから、TabBarのnameに一致する要素を取り出す
+		// state.tabsから、TabListのnameに一致する要素を取り出す
 		const tab = tabs.find((v, i, a) => {
 			if(v.name === name) {
 				return true;
 			}
 			return false;
 		})
-		var selected = null;
 		if(tab) {
-			selected = tab.selected;
+			const selected = tab.selected;
+
+			const children = this.props.children.map((v, i, a) => {
+				const props = objectAssign({}, v.props, {
+					selected:  i === selected,
+					selectTab: () => { selectTab(name, i); }
+				})
+
+				return objectAssign({}, v, {
+					props: props
+				})
+			})
+
+			// インジケータの幅と位置
+			const indicator_style = {
+				width: (100 / children.length) + '%',
+				left:  selected * (100 / children.length) + '%'
+			}
+
+			return (
+				<nav className="tab-list" id={id}>
+					<div className="tab-bar">
+						<div
+							className="tab-indicator"
+							style={indicator_style}></div>
+					</div>
+					<ul>
+						{children}
+					</ul>
+				</nav>
+			)
+		} else {
+			return (
+				<nav className="tab-list" id={id}></nav>
+			)
 		}
-
-		const children = this.props.children.map((v, i, a) => {
-			const props = objectAssign({}, v.props, {
-				selected:  i === selected,
-				selectTab: () => { selectTab(name, i); }
-			})
-
-			return objectAssign({}, v, {
-				props: props
-			})
-		})
-
-		return (
-			<nav className="tab-bar" id={id}>
-				<ul>
-					{children}
-				</ul>
-			</nav>
-		)
 	}
 }
 
@@ -112,7 +123,7 @@ const mapDispatchToProps = (dispatch) => {
 	}, dispatch)
 }
 
-export const ReduxTabBar = connect(
+export const ReduxTabList = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(TabBar)
+)(TabList)
