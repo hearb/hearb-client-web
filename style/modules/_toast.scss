@@ -5,7 +5,7 @@
 	max-height: 0;
 	min-height: 0;
 
-	&.active, &.continue {
+	&.active {
 		max-height: 48px;
 		min-height: 48px;
 	}

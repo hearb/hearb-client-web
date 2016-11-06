@@ -19,11 +19,12 @@ export const popToast = () => {
 	}
 }
 
-export const pushToast = (message, type) => {
+export const pushToast = (message, type, expires_in = 5000) => {
 	return {
-		type: TOAST_PUSH,
-		message: message,
-		message_type: type
+		type:         TOAST_PUSH,
+		message:      message,
+		message_type: type,
+		expires_in:   expires_in
 	}
 }
 
@@ -51,9 +52,10 @@ export const toastReducer = (state = init, action) => {
 	switch(action.type) {
 	case TOAST_PUSH:
 		toasts.push({
-			message: action.message,
-			type:    action.message_type,
-			active:  false
+			message:    action.message,
+			type:       action.message_type,
+			active:     toasts.length === 0,
+			expires_in: action.expires_in
 		});
 		return toasts;
 

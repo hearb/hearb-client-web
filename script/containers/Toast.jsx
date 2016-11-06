@@ -26,11 +26,12 @@ class Toast extends React.Component {
 
 	onTransitionEnd() {
 		const {popToast, activateToast, inactivateToast} = this.props;
+		const toast = this.props.toasts[0];
 
-		if(this.props.toasts[0].active) {
+		if(toast.active) {
 			this.timer = setTimeout(() => {
 				inactivateToast();
-			}, 5000);
+			}, toast.expires_in);
 		} else {
 			popToast();
 			activateToast();
@@ -40,6 +41,7 @@ class Toast extends React.Component {
 	onClickClose() {
 		if(this.timer) {
 			clearTimeout(this.timer);
+			delete this.timer;
 		}
 		this.props.inactivateToast();
 	}
@@ -50,8 +52,7 @@ class Toast extends React.Component {
 			const {message, type, active} = this.props.toasts[0];
 
 			const class_container = classnames('toast-container', {
-				'active': active,
-				'continue': len > 1
+				'active': active || len > 1
 			})
 
 			const class_toast = classnames('toast', type, {
@@ -69,18 +70,9 @@ class Toast extends React.Component {
 				</div>
 			)
 		} else {
-			return null;
-		}
-	}
-
-	// After render() called
-	componentDidUpdate(prevProps, prevState) {
-		// リストが空の状態から登録された場合、
-		// アニメーションのためにDOM生成後にpropsを変更する
-		if(prevProps.toasts.length === 0) {
-			setTimeout(() => {
-				this.props.activateToast();
-			}, 50)
+			return (
+				<div className="toast-container"></div>
+			)
 		}
 	}
 }
