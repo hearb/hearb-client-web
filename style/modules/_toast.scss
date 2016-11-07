@@ -1,5 +1,5 @@
 .toast-container {
-	overflow: hidden;
+	overflow: visible;
 
 	transition: all .15s ease-out;
 	max-height: 0;
@@ -15,7 +15,7 @@
 	width: 100vw;
 	height: 48px;
 
-	transition: all .15s ease-out;
+	transition: transform .15s ease-out;
 	transform: translateY(0);
 
 	&.closing {
@@ -34,7 +34,7 @@
 		cursor: pointer;
 	}
 
-	box-shadow: 0 -1px 2px palette(Black, Hint Text);
+	box-shadow: 0 -1px 4px palette(Black, Hint Text);
 
 	background-color: palette(White);
 	color: palette(Black, Text);
