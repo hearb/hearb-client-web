@@ -20,7 +20,9 @@
     "url": "https://github.com/hearb/hearb-client-web/issues"
   },
   "homepage": "https://github.com/hearb/hearb-client-web#readme",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.14.0"
+  },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
     "babel-core": "^6.17.0",
@@ -44,7 +46,6 @@
     "redux-thunk": "^2.1.0",
     "sanitize.css": "^4.1.0",
     "sass-loader": "^4.0.2",
-    "shortid": "^2.2.6",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2"
   }
